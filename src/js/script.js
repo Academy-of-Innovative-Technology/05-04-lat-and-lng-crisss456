@@ -1,4 +1,4 @@
-mapboxgl.accessToken = ' ACCESS TOKEN ';
+mapboxgl.accessToken = env.MAPBOX_ACCESS_TOKEN;
 
 const map = new mapboxgl.Map({
   container: 'map',
@@ -9,14 +9,18 @@ const map = new mapboxgl.Map({
 
 function setMapCenter() {
 
-  const long = parseFloat(      );
-  const lat = parseFloat(       );
+  const long = parseFloat(document.getElementById("longitude").value);
+  const lat = parseFloat(document.getElementById("latitude").value);
+
+  console.log(long, lat);
 
   if (!isNaN(long) && !isNaN(lat)) {
 
+    const coordinates = new mapboxgl.LngLat(long, lat);
+
     map.flyTo({
-      center: "",
-      zoom: 12  // Optional: Adjust zoom level if needed
+      center: coordinates,
+      zoom: 15
     });
 
   } else {
